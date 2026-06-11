@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application de gestion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="gestion.js" defer></script>
+    
+</head>
+<body class="flex justify-center  ">
+    <div id="container1" class="w-290 h-220 flex rounded-2xl " >
+        <div class="flex-3 bg-[#012448] rounded-2xl">
+            <!-- <img src="image copy.png" style="width: 700px ; height:900px ;"> -->
+        </div>
+        <div  class="flex-5 bg-[#f8f9ff] flex justify-center items-center rounded-2xl">
+            <div class=" w-130 h-200 flex flex-col gap-1">
+                <div  class=" flex-2 text-[#14385f] text-3xl font-bold flex justify-center ">Creer mon compte</div> 
+                <div  class="flex-1 text-gray-600">Remplissez les informations ci-dessous pour commencer à gérer vos séminaires.</div>
+                <div  class="flex-1 text-gray-600 text-xs flex items-center font-bold">Nom complet</div>
+                <div  class="flex-1 border border-gray-300 bg-[#ffffff]">
+                    <input id="inputNom" type="text" class="w-130 h-8 ">
+                </div>
+                <div  class="flex-1 text-gray-600 text-xs flex items-center font-bold">Email professionnel</div>
+                <div  class="flex-1 border border-gray-300 bg-[#ffffff]">
+                    <input id="inpuEmail1" type="text" class="w-130 h-8 ">
+                </div>
+                <div  class="flex-1 gap-6 flex">
+                 <div class="flex-1 text-gray-600 text-xs flex items-center font-bold">Organisation</div>
+                 <div class="flex-1 text-gray-600 text-xs flex items-center font-bold">Poste</div>
+                </div>
+                <div  class="flex-1 gap-6 flex">
+                 <div class="flex-1 border border-gray-300 bg-[#ffffff]">
+                    <input id="inputOrganisation" type="text"  class="w-61 h-8 ">
+                </div>
+                <div class="flex-1 border border-gray-300 bg-[#ffffff]">
+                    <input id="inputPoste" type="text" class="w-61 h-8 " >
+                </div>
+               </div>
+               <div  class="flex-1 text-gray-600 text-xs flex items-center font-bold">Numéro de téléphone</div>
+               <div  class="flex-1 border border-gray-300 bg-[#ffffff]">
+                    <input id="inputNumero" type="number"  class="w-130 h-8 ">
+               </div>
+               <div  class="flex-1 flex gap-6">
+                <div class="flex-1 text-gray-600 text-xs flex items-center font-bold">Mot de passe</div>
+                <div class="flex-1 text-gray-600 text-xs flex items-center font-bold">Confirmer mot de passe</div>
+               </div>
+               <div  class="flex-1 gap-6 flex">
+                <div class="flex-1 border border-gray-300 bg-[#ffffff]">
+                    <input id="inputPass1" type="text"  class="w-61 h-8 ">
+                </div>
+                <div class="flex-1 border border-gray-300 bg-[#ffffff]">
+                    <input id="inputConfirme" type="text"  class="w-61 h-8 ">
+                </div>
+               </div>
+               <div  class="flex-2 text-gray-600 flex justify-center items-center">J'accepte les conditions d'utilisation et la politique de confidentialité.</div>
+               <div id="Cdirect" class="flex-1 bg-[#012448] rounded-2xl flex justify-center items-center text-gray-100">Se connecter</div>
+               <div  class="flex-2  mt-10 flex flex-col">
+                    <hr>
+               </div>
+               <div  class="flex-2 flex gap-1">
+                <div class=" flex-1 flex justify-end ">J'ai déjà un compte ? </div>
+                <div  id="MEconnecter" class="flex-1 text-gray-600 text-xs font-bold p-1 cursor-pointer ">Me connecter</div>
+               </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="container2" class="w-290 h-220 bg-[#f8f9ff] flex justify-center items-center">
+        <div class="w-90 h-160 bg-[#f8f9ff] flex flex-col">
+            <div class="flex-1 flex flex-col ">
+                <div class="flex-1 flex justify-center  ">
+                    <div class="w-8 h-10 bg-[#012448] flex justify-center items-center ">
+                        <i class="fa-regular fa-calendar-days" style="color: rgb(255, 253, 254); font-size: 25px;"></i></div>
+                    </div>
+                <div class="flex-1 text-[#012448] font-bold text-2xl flex justify-center" >SÉMINAIRE PRO</div>
+                <div class="flex-1 text-gray-600 text-xs flex justify-center font-bold">PANEL DE GESTION</div>
+            </div>
+            <div class="flex-4 border border-gray-300 rounded-2xl bg-[#ffffff] flex flex-col p-3 gap-1">
+                <div class="flex-1 text-[#012448] font-bold flex items-center ">Bienvenue, connectez-vous</div>
+                <div class="flex-1 text-gray-600 text-xs ">Accédez à votre tableau de bord de planification</div>
+                <div class="flex-1 text-gray-600 text-xs font-bold flex items-center">ADRESSE EMAIL</div>
+                <div class="flex-1 border border-gray-300 bg-[#ffffff] ">
+                    <input id="inputMail2" type= "text" class="w-80 h-8 ">
+                </div>
+                <div class="flex-1 text-gray-600 text-xs font-bold flex items-center">MOT DE PASSE</div>
+                <div class="flex-1 border border-gray-300 bg-[#ffffff] ">
+                    <input id="inputMot2" type="text" class="w-80 h-8 ">
+                </div>
+                <div class="flex-1 text-[#012448] text-xs font-bold  flex justify-end items-center">Mot de passe oublié?</div>
+                <div id="SEconnecte" class="flex-1 bg-[#012448] text-[#ffffff] text-xs font-bold flex justify-center items-center cursor-pointer">Se connecter</div>
+                <div class="flex-1 mt-8">
+                    <hr>
+                </div>
+                <div class="flex-1 text-[#012448] ">Vous n'avez pas de compte ?</div>
+                <div class="flex-1 border border-gray-300 m-6 text-xs flex justify-center items-center text-[#012448] font-bold ">Créer un compte gestionnaire</div>
+            </div>
+        </div>
+    </div>
+    <div id="container3" class="w-500 h-240 bg-[#ffffff] flex"> 
+        <div class="flex-1 bg-[#012448] flex flex-col gap-1">
+            <div class="flex-1 text-[#ffffff] font-bold text-xl flex justify-center items-end" >SÉMINAIRE PRO 
+                <i class="fa-regular fa-calendar-days" style="color: rgb(255, 253, 254); font-size: 15px; margin-bottom: 7px;"></i>
+            </div>
+            <div class="flex-1 text-gray-200 flex items-center pl-10">Manager Panel</div>
+            <div class="flex-1 text-gray-200 flex items-center pl-13 bg-[#294469] font-bold ">
+                <i class="fa-solid fa-chart-bar" style="color: rgb(253, 252, 253);"></i> Dashboard</div>
+            <div class="flex-1 text-gray-200 flex items-center pl-13 hover:bg-[#294469]">
+                <i class="fa-regular fa-calendar-days" style="color: rgb(207, 202, 206);"></i>Séminaires</div>
+            <div class="flex-1 text-gray-200 flex items-center pl-13 hover:bg-[#294469]">
+                <i class="fa-solid fa-users" style="color: rgb(207, 202, 206);"></i>Participants</div>
+            <div class="flex-1 text-gray-200 flex items-center pl-13 hover:bg-[#294469]">
+                <i class="fa-solid fa-coins" style="color: rgb(207, 202, 206);"></i>Budget</div>
+            <div class="flex-1 text-gray-200 flex items-center pl-13 hover:bg-[#294469]">
+                <i class="fa-regular fa-calendar-plus" style="color: rgb(207, 202, 206);"></i>Planning</div>
+            <div class="flex-1 text-gray-200 flex items-center pl-13 hover:bg-[#294469]">
+                <i class="fa-solid fa-utensils" style="color: rgb(207, 202, 206);"></i></i> Restauration</div>
+            <div class="flex-1 text-gray-200 flex items-center pl-13 hover:bg-[#294469]"> 
+                <i class="fa-regular fa-file" style="color: rgb(207, 202, 206);"></i>Documents</div>
+            <div class="flex-10 text-gray-200 "></div>
+            <div class="flex-1 text-gray-200 pl-13 flex items-center hover:bg-[#294469]">
+                <i class="fa-solid fa-gear" style="color:rgb(207, 202, 206);"></i>Settings</div>
+            <div class="flex-1 text-gray-200 pl-13 flex items-center hover:bg-[#294469]">
+                <i class="fa-regular fa-circle-question" style="color: rgb(207, 202, 206);"></i>Support</div>
+        </div>
+        <div class="flex-6"></div>
+    </div>
+</body>
+</html>
