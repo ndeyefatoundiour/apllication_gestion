@@ -17,7 +17,6 @@ connexion.addEventListener("click" , function(){
     container2.hidden = false
 })
 
-// Ta "base de données" est une chaîne de caractères au format JSON
 let baseJSON = "[]"; 
 
 
@@ -26,17 +25,14 @@ Cdirect.addEventListener("click", function() {
     const email = document.querySelector("#inpuEmail1").value;
     const pass = document.querySelector("#inputPass1").value;
 
-    // 1. On "parse" (traduit) notre chaîne JSON pour pouvoir travailler avec
     let comptesTableau = JSON.parse(baseJSON);
 
-    // 2. On vérifie si l'email existe
     if (comptesTableau.find(u => u.email === email)) {
         alert("Déjà inscrit !");
     } else {
-        // 3. On ajoute le nouvel objet
+
         comptesTableau.push({ nom: nom, email: email, mdp: pass });
 
-        // 4. On re-transforme le tableau en TEXTE JSON (on écrase l'ancienne baseJSON)
         baseJSON = JSON.stringify(comptesTableau);
 
         alert("Compte enregistré en format JSON !");
@@ -50,7 +46,6 @@ SEconnecter.addEventListener("click", function() {
     const emailLogin = document.querySelector("#inputMail2").value;
     const passLogin = document.querySelector("#inputMot2").value;
 
-    // On traduit la chaîne baseJSON en tableau pour faire la recherche
     let comptesTableau = JSON.parse(baseJSON);
 
     const user = comptesTableau.find(u => u.email === emailLogin && u.mdp === passLogin);
