@@ -2,84 +2,72 @@ const container1 = document.querySelector("#container1");
 const container2 = document.querySelector("#container2");
 const container3 = document.querySelector("#container3");
 
+
 container1.hidden = false; 
 container2.hidden = true;  
 container3.hidden = true;
 
-const Cdirect = document.querySelector("#Cdirect")
+const Cdirect = document.querySelector("#Cdirect"); 
+const connexion = document.querySelector("#MEconnecter"); 
+const SEconnecter = document.querySelector("#SEconnecte"); 
 
-const connexion = document.querySelector("#MEconnecter")
 
-const SEconnecter = document.querySelector("#SEconnecte")
+let baseJSON = `[
+    {"nom":"Ndeye fatou Ndiour","email":"ndeyefatoundiour530@gmail.com","mdp":"ndiaye"},
+    {"nom":"Rougui Sy","email":"rouguisy08@gmail.com","mdp":"sy@8"}
+]`;
 
-connexion.addEventListener("click" , function(){
+connexion.addEventListener("click", function() {
     container1.hidden = true;
-    container2.hidden = false
-})
-
-SEconnecter.addEventListener("click", function() {
-
-    const emailLogin = document.querySelector("#inputMail2").value.trim();
-    const passLogin = document.querySelector("#inputMot2").value;
-
-    if (emailLogin === "" || passLogin === "") {
-        alert("Veuillez remplir tous les champs !");
-        return;
-    }
-
-    const comptes = JSON.parse(localStorage.getItem("utilisateurs")) || [];
-
-    const utilisateurValide = comptes.find(user => user.email === emailLogin && user.mdp === passLogin);
-
-    if (utilisateurValide) {
-
-        alert("Connexion réussie ! Bienvenue " + utilisateurValide.nom);
-        
-        container2.hidden = true;
-        container3.hidden = false;
-    } else {
-
-        alert("Compte inexistant ou mot de passe incorrect. Veuillez vérifier vos informations.");
-    }
+    container2.hidden = false;
 });
 
 
 Cdirect.addEventListener("click", function() {
-
     const nom = document.querySelector("#inputNom").value.trim();
     const email = document.querySelector("#inpuEmail1").value.trim();
-    const password = document.querySelector("#inputPass1").value;
+    const pass = document.querySelector("#inputPass1").value.trim();
 
-    if (nom === "" || email === "" || password === "") {
-        alert("Veuillez remplir tous les champs !");
-        return;
+    if (nom === "" || email === "" || pass === "") {
+        alert("Attention : Tous les champs doivent être remplis !");
+        return; 
     }
 
-    let comptes = JSON.parse(localStorage.getItem("utilisateurs")) || [];
+    let comptesTableau = JSON.parse(baseJSON);
 
-    const existeDeja = comptes.find(user => user.email === email);
+    if (comptesTableau.find(u => u.email === email)) {
 
-    if (existeDeja) {
-
-        alert("Cet email est déjà inscrit ! Connectez-vous.");
-
+        alert("Déjà inscrit !");
+        
     } else {
-
-        const nouvelUtilisateur = {
-            nom: nom,
-            email: email,
-            mdp: password
-        };
-
-        comptes.push(nouvelUtilisateur);
-
-        localStorage.setItem("utilisateurs", JSON.stringify(comptes));
-
-        alert("Inscription réussie !");
+        comptesTableau.push({ nom: nom, email: email, mdp: pass });
+        baseJSON = JSON.stringify(comptesTableau);
+        alert("Compte enregistré (JSON) !");
         
         container1.hidden = true;
         container3.hidden = false;
     }
 });
 
+SEconnecter.addEventListener("click", function() {
 
+    const emailLogin = document.querySelector("#inputMail2").value.trim();
+    const passLogin = document.querySelector("#inputMot2").value.trim();
+
+    if (emailLogin === "" || passLogin === "") {
+        alert("Veuillez saisir votre email et votre mot de passe.");
+        return;
+    }
+
+    let comptesTableau = JSON.parse(baseJSON);
+
+    const user = comptesTableau.find(u => u.email === emailLogin && u.mdp === passLogin);
+
+    if (user) {
+        alert("Connexion réussie !");
+        container2.hidden = true;
+        container3.hidden = false;
+    } else {
+        alert("Email ou mot de passe incorrect");
+    }
+});
