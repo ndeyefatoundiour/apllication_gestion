@@ -30,7 +30,7 @@ export default function inscription(){
         </div>
 
         <!-- Partie droite -->
-        <div class="w-[40%] p-12 bg-white/1 backdrop-blur-md rounded-2xl p-10 m-10">
+        <div class="w-[40%] p-12 bg-white/90 backdrop-blur-md rounded-2xl p-10 m-10">
 
             <h2 class="text-4xl font-bold text-[#012448] mb-2">
                 Créer mon compte

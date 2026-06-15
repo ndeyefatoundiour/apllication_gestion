@@ -27,6 +27,15 @@
       "poste": "gerante",
       "numero": "",
       "id": "Lkl01B6Kz8Y"
+    },
+    {
+      "nom": "TIMERA",
+      "email": "timera@gmail.com",
+      "password": "timera@@@",
+      "organisateur": "ecole",
+      "poste": "organisateur",
+      "numero": "773751678",
+      "id": "YOPEGYNw0BE"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

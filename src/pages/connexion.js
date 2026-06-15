@@ -32,7 +32,7 @@ export default function connexion(){
         </div>
 
         <!-- Partie droite -->
-        <div class="flex-1 W-[40%] flex flex-col justify-center p-16 m-10 bg-white/1 backdrop-blur-md rounded-2xl"
+        <div class="flex-1 W-[40%] flex flex-col justify-center p-16 m-10 bg-white/90 backdrop-blur-md rounded-2xl"
 
             <h2 class="text-4xl font-bold text-[#012448] mb-2">
                 Connexion
