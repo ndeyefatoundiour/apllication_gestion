@@ -1,0 +1,33 @@
+{
+  "utilisateur": [
+    {
+      "email": "ndeyefatoundiour530@gmail.com",
+      "password": "ndiaye",
+      "confirm ": "ndiaye",
+      "nom": "Ndeye Fatou Ndiour",
+      "organisateur": "ecole ",
+      "poste": "oraganisateur",
+      "numero": "777342952",
+      "id": "zLIKRAIITT0"
+    },
+    {
+      "nom": "Rougui Sy",
+      "email": "rougui080601@gmail.com",
+      "password": "sy@8",
+      "organisateur": "universite",
+      "poste": "organisateur",
+      "numero": "777342952",
+      "id": "WiDsWm_xLZU"
+    },
+    {
+      "nom": "Seunabou Mbaye",
+      "email": "seynaboumbay08@gmail.com",
+      "password": "mbaye",
+      "organisateur": "entreprise",
+      "poste": "gerante",
+      "numero": "",
+      "id": "Lkl01B6Kz8Y"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
