@@ -1,6 +1,17 @@
 export default function dashboard() {
 
-    document.querySelector("#app").innerHTML = `
+    const user = JSON.parse(sessionStorage.getItem("userConnecter"));
+    
+    const nomComplet = user ? user.nom : "Utilisateur";
+    const role = user ? user.organisateur : "Organisateur";
+    const initiales = nomComplet
+        .split(" ")
+        .map(n => n[0])
+        .join("")
+        .toUpperCase()
+        .substring(0, 2);
+
+    return `
 
         <div id="container3" class="w-full min-h-screen bg-white flex">
 
@@ -50,7 +61,7 @@ export default function dashboard() {
                 </div>
                 <div id  = "btnsupport" class="h-12 text-gray-200 flex items-center pl-8 hover:bg-[#294469] cursor-pointer">
                     <i class="fa-regular fa-circle-question mr-3"></i>
-                    Support
+                    Rapport
                 </div>
                 <div id="logout"
                 class="h-12 text-red-300 flex items-center pl-8 hover:bg-red-500 hover:text-white cursor-pointer">
@@ -87,13 +98,13 @@ export default function dashboard() {
                     <!-- Infos Utilisateur -->
                     <div class="flex items-center gap-4 border-l pl-8 border-gray-200">
                         <div class="flex flex-col text-right">
-                            <span class="font-bold text-[#012448] text-sm leading-none">Ndeye Fatou Ndiour</span>
-                            <span class="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1">Organisateur</span>
+                            <span class="font-bold text-[#012448] text-sm leading-none">${nomComplet}</span>
+                            <span class="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1">${role}</span>
                         </div>
 
                         <!-- Avatar -->
                         <div class="w-12 h-12 rounded-2xl bg-[#012448] flex items-center justify-center text-white font-bold shadow-lg shadow-blue-900/20 transform hover:rotate-3 transition-transform cursor-pointer">
-                            NF
+                            ${initiales}
                         </div>
                     </div>
                 </div>
@@ -130,7 +141,7 @@ export default function dashboard() {
                     </div>
                     <div class="flex flex-col">
                         <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Séminaires actifs</span>
-                        <span class="text-3xl font-black text-[#012448]">3</span>
+                        <span class="text-3xl font-black text-[#012448]"></span>
                     </div>
                 </div>
 
@@ -141,7 +152,7 @@ export default function dashboard() {
                     </div>
                     <div class="flex flex-col">
                         <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Total Participants</span>
-                        <span class="text-3xl font-black text-[#012448]">120</span>
+                        <span class="text-3xl font-black text-[#012448]"></span>
                     </div>
                 </div>
 
@@ -152,7 +163,7 @@ export default function dashboard() {
                     </div>
                     <div class="flex flex-col">
                         <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Budget Restant</span>
-                        <span class="text-3xl font-black text-[#012448]">1000000f</span>
+                        <span class="text-3xl font-black text-[#012448]"></span>
                     </div>
                 </div>
             </div>
@@ -170,18 +181,20 @@ export default function dashboard() {
                     <!-- Liste flex pour le tableau -->
                     <div class="flex flex-col">
                          <div class="flex px-8 py-4 bg-gray-50/50 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                            <div class="flex-1">Nom</div>
-                            <div class="w-32">Dates</div>
-                            <div class="w-32">Lieu</div>
+                            <div class="flex-1">NOM</div>
+                            <div class="w-32">DATES</div>
+                            <div class="w-32">LIEU</div>
+                            <div class="w-32">PARTICUPANTS</div>
                             <div class="w-24 text-center">Statut</div>
                         </div>
                         <!-- Ligne exemple -->
                         <div class="flex items-center px-8 py-5 border-b border-gray-50">
-                            <div class="flex-1 font-bold text-sm text-gray-700">Innovation Summit</div>
-                            <div class="w-32 text-xs text-gray-500">12 - 14 Oct</div>
-                            <div class="w-32 text-xs text-gray-500">Paris</div>
+                            <div class="flex-1 font-bold text-sm text-gray-700"></div>
+                            <div class="w-32 text-xs text-gray-500"></div>
+                            <div class="w-32 text-xs text-gray-500"></div>
+                            <div class="w-32 text-xs text-gray-500 pl-8"></div>
                             <div class="w-24 flex justify-center">
-                                <span class="bg-green-100 text-green-700 text-[9px] font-black px-2 py-1 rounded-full uppercase">En cours</span>
+                                <span class="bg-green-100 text-green-700 text-[9px] font-black px-2 py-1 rounded-full uppercase"></span>
                             </div>
                         </div>
 
@@ -198,12 +211,12 @@ export default function dashboard() {
                         <!-- Carte Alerte Rouge -->
                         <div class="bg-red-50 border-l-4 border-red-500 p-3 rounded-r-xl">
                             <p class="text-[11px] font-black text-red-900 uppercase">Budget dépassé</p>
-                            <p class="text-[10px] text-red-700">Le poste "Restauration" est à +450€.</p>
+                            <p class="text-[10px] text-red-700"></p>
                         </div>
                         <!-- Carte Alerte Bleue -->
                         <div class="bg-blue-50 border-l-4 border-blue-500 p-3 rounded-r-xl">
-                            <p class="text-[11px] font-black text-blue-900 uppercase">Nouveaux inscrits</p>
-                            <p class="text-[10px] text-blue-700">12 personnes ont rejoint le séminaire.</p>
+                            <p class="text-[11px] font-black text-blue-900 uppercase"></p>
+                            <p class="text-[10px] text-blue-700">.</p>
                         </div>
                     </div>
                     <button class="w-full py-4 bg-gray-50 text-[10px] font-black text-gray-400 uppercase border-t border-gray-100">

@@ -1,6 +1,17 @@
 export default function seminaire(){
 
-    document.querySelector("#app").innerHTML = `
+    const user = JSON.parse(sessionStorage.getItem("userConnecter"));
+    
+    const nomComplet = user ? user.nom : "Utilisateur";
+    const role = user ? user.organisateur : "Organisateur";
+    const initiales = nomComplet
+        .split(" ")
+        .map(n => n[0])
+        .join("")
+        .toUpperCase()
+        .substring(0, 2);
+
+    return `
         <div id="container3" class="w-full h-screen bg-white flex overflow-hidden">
 
             <!-- SIDEBAR -->
@@ -49,7 +60,7 @@ export default function seminaire(){
                     </div>
                     <div id  = "btnsupport" class="h-12 text-gray-200 flex items-center pl-8 hover:bg-[#294469] cursor-pointer">
                         <i class="fa-regular fa-circle-question mr-3"></i>
-                        Support
+                        Rapport
                     </div>
                     <div id="logout"
                     class="h-12 text-red-300 flex items-center pl-8 hover:bg-red-500 hover:text-white cursor-pointer">
@@ -80,12 +91,12 @@ export default function seminaire(){
                         <!-- Infos Utilisateur -->
                         <div class="flex items-center gap-4 border-l pl-8 border-gray-200">
                             <div class="flex flex-col text-right">
-                                <span class="font-bold text-[#012448] text-sm leading-none">Ndeye Fatou Ndiour</span>
-                                <span class="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1">Organisateur</span>
+                                <span class="font-bold text-[#012448] text-sm leading-none">${nomComplet}</span>
+                                <span class="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1">${role}</span>
                             </div>
                             <!-- Avatar -->
-                            <div class="w-12 h-12 rounded-2xl bg-[#012448] flex items-center justify-center text-white font-bold shadow-lg shadow-blue-900/20 transform hover:rotate-3 transition-transform cursor-pointer">
-                                NF
+                            <div  id="initial" class="w-12 h-12 rounded-2xl bg-[#012448] flex items-center justify-center text-white font-bold shadow-lg shadow-blue-900/20 transform hover:rotate-3 transition-transform cursor-pointer">
+                                ${initiales}
                             </div>
                         </div>
                     </div>
@@ -126,74 +137,76 @@ export default function seminaire(){
 
                 <div class="grid grid-cols-2 gap-8 mb-8">
                     <div class="flex flex-col gap-2">
-                        <label class="text-[11px] font-black text-gray-400 uppercase tracking-widest">Intitulé du séminaire</label>
-                        <input type="text" class="h-14 border border-gray-200 rounded-xl px-4 outline-none focus:border-[#012448] bg-gray-50/50">
+                        <span class="text-[11px] font-black text-gray-400 uppercase tracking-widest">Intitulé du séminaire</span>
+                        <input id = "nomSeminaire" type="text" class="h-14 border border-gray-200 rounded-xl px-4 outline-none focus:border-[#012448] bg-gray-50/50">
                     </div>
                     <div class="flex flex-col gap-2">
-                        <label class="text-[11px] font-black text-gray-400 uppercase tracking-widest">Thématique</label>
-                        <select class="h-14 border border-gray-200 rounded-xl px-4 outline-none bg-gray-50/50 appearance-none">
-                            <option>Sélectionnez une thématique</option>
-                        </select>
+                        <span class="text-[11px] font-black text-gray-400 uppercase tracking-widest">Thématique</span>
+                        <input id="thematique" type ="text"  class="h-14 border border-gray-200 rounded-xl px-4 outline-none bg-gray-50/50 appearance-none">
                     </div>
                 </div>
 
                 <div class="bg-blue-50/50 rounded-2xl p-8 flex gap-8 mb-8">
                     <div class="flex-1 flex flex-col gap-2">
-                        <label class="text-[11px] font-black text-[#012448] uppercase tracking-widest">Date de début</label>
+                        <span class="text-[11px] font-black text-[#012448] uppercase tracking-widest">Date de début</span>
                         <div class="relative">
-                            <input type="date" class="w-full h-14 bg-white border border-blue-100 rounded-xl px-4 outline-none">
+                            <input id="debut" type="date" class="w-full h-14 bg-white border border-blue-100 rounded-xl px-4 outline-none">
                         </div>
                     </div>
                     <div class="flex-1 flex flex-col gap-2">
-                        <label class="text-[11px] font-black text-[#012448] uppercase tracking-widest">Date de fin</label>
-                        <input type="date" class="w-full h-14 bg-white border border-blue-100 rounded-xl px-4 outline-none">
+                        <span class="text-[11px] font-black text-[#012448] uppercase tracking-widest">Date de fin</span>
+                        <input id="fin" type="date" class="w-full h-14 bg-white border border-blue-100 rounded-xl px-4 outline-none">
                     </div>
                     <div class="w-48 flex flex-col gap-2">
-                        <label class="text-[11px] font-black text-[#012448] uppercase tracking-widest">Durée (jours)</label>
-                        <input type="number" value="0" class="w-full h-14 bg-white border border-blue-100 rounded-xl px-4 outline-none">
+                        <span class="text-[11px] font-black text-[#012448] uppercase tracking-widest">Durée (jours)</span>
+                        <input id="durer" type="number" value="0" class="w-full h-14 bg-white border border-blue-100 rounded-xl px-4 outline-none">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-3 gap-8 mb-10">
                     <div class="flex flex-col gap-2">
-                        <label class="text-[11px] font-black text-gray-400 uppercase tracking-widest">Participants prévus</label>
-                        <input type="number" class="h-14 border border-gray-200 rounded-xl px-4 outline-none bg-gray-50/50">
+                        <span class="text-[11px] font-black text-gray-400 uppercase tracking-widest">Participants prévus</span>
+                        <input id="participantsPrevu" type="number" class="h-14 border border-gray-200 rounded-xl px-4 outline-none bg-gray-50/50">
                     </div>
                     <div class="flex flex-col gap-2">
-                        <label class="text-[11px] font-black text-gray-400 uppercase tracking-widest">Capacité maximale</label>
-                        <input type="number" class="h-14 border border-gray-200 rounded-xl px-4 outline-none bg-gray-50/50">
+                        <span class="text-[11px] font-black text-gray-400 uppercase tracking-widest">Capacité maximale</span>
+                        <input id="capaciter" type="number" class="h-14 border border-gray-200 rounded-xl px-4 outline-none bg-gray-50/50">
                     </div>
                     <div class="flex flex-col gap-2">
-                        <label class="text-[11px] font-black text-gray-400 uppercase tracking-widest">Langue principale</label>
-                        <select class="h-14 border border-gray-200 rounded-xl px-4 bg-gray-50/50 appearance-none">
+                        <span class="text-[11px] font-black text-gray-400 uppercase tracking-widest">Langue principale</span>
+                        <select id="langue" class="h-14 border border-gray-200 rounded-xl px-4 bg-gray-50/50 appearance-none">
                             <option>Français</option>
+                            <option>Anglais</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="mb-10">
-                    <label class="text-[11px] font-black text-gray-400 uppercase tracking-widest block mb-4">Type de séminaire</label>
+                    <span class="text-[11px] font-black text-gray-400 uppercase tracking-widest block mb-4">Type de séminaire</span>
                     <div class="flex gap-8">
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="radio" name="type" class="w-5 h-5 accent-[#012448]" checked>
+                        <span class="flex items-center gap-3 cursor-pointer">
+                            <input id="type1" type="radio" name="type" class="w-5 h-5 accent-[#012448]" checked>
                             <span class="text-sm font-bold text-gray-700">Interne</span>
-                        </label>
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="radio" name="type" class="w-5 h-5 accent-[#012448]">
+                        </span>
+                        <span class="flex items-center gap-3 cursor-pointer">
+                            <input id="type2" type="radio" name="type" class="w-5 h-5 accent-[#012448]">
                             <span class="text-sm font-bold text-gray-700">Externe</span>
-                        </label>
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="radio" name="type" class="w-5 h-5 accent-[#012448]">
+                        </span>
+                        <span class="flex items-center gap-3 cursor-pointer">
+                            <input id="type2" type="radio" name="type" class="w-5 h-5 accent-[#012448]">
                             <span class="text-sm font-bold text-gray-700">Mixte</span>
-                        </label>
+                        </span>
                     </div>
                 </div>
 
                 <hr class="border-gray-100 mb-8">
 
-                <div class="flex justify-between">
-            </div>
+                <div class="flex justify-end "> <button id="btnEnregistre" class ="bg-[#012448] border border-gray-500 text-[11px] font-black text-white uppercase tracking-widest">ENREGISTRE</button> </div>
         </div>
 
     `;
+
+
 }
+
+

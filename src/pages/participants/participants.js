@@ -1,9 +1,20 @@
 export default function seminaire() {
 
-    document.querySelector("#app").innerHTML = `
+    const user = JSON.parse(sessionStorage.getItem("userConnecter"));
+    
+    const nomComplet = user ? user.nom : "Utilisateur";
+    const role = user ? user.organisateur : "Organisateur";
+    const initiales = nomComplet
+        .split(" ")
+        .map(n => n[0])
+        .join("")
+        .toUpperCase()
+        .substring(0, 2);
+    
+    return `
 
         <div id="container3" class="w-full h-screen bg-white flex overflow-hidden">
-        
+
             <!-- SIDEBAR -->
             <div class="w-72 bg-[#012448] flex flex-col">
                 <div class="h-20 flex items-center justify-center text-white font-bold text-xl border-b border-[#294469]">
@@ -50,7 +61,7 @@ export default function seminaire() {
                 </div>
                 <div id  = "btnsupport" class="h-12 text-gray-200 flex items-center pl-8 hover:bg-[#294469] cursor-pointer">
                     <i class="fa-regular fa-circle-question mr-3"></i>
-                    Support
+                    Rapport
                 </div>
                 <div id="logout"
                 class="h-12 text-red-300 flex items-center pl-8 hover:bg-red-500 hover:text-white cursor-pointer">
@@ -81,12 +92,12 @@ export default function seminaire() {
                         <!-- Infos Utilisateur -->
                         <div class="flex items-center gap-4 border-l pl-8 border-gray-200">
                             <div class="flex flex-col text-right">
-                                <span class="font-bold text-[#012448] text-sm leading-none">Ndeye Fatou Ndiour</span>
-                                <span class="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1">Organisateur</span>
+                                <span class="font-bold text-[#012448] text-sm leading-none">${nomComplet}</span>
+                                <span class="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1"> ${role}</span>
                             </div>
                             <!-- Avatar -->
                             <div class="w-12 h-12 rounded-2xl bg-[#012448] flex items-center justify-center text-white font-bold shadow-lg shadow-blue-900/20 transform hover:rotate-3 transition-transform cursor-pointer">
-                                NF
+                                ${initiales}
                             </div>
                         </div>
                     </div>
@@ -98,7 +109,7 @@ export default function seminaire() {
                     <div class="flex justify-between py-5 items-start">
                         <div>
                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-1">Séminaires > Séminaire de Direction 2024</p>
-                            <h2 class="text-3xl font-black text-[#012448] tracking-tight italic">Participants — Séminaire de Direction 2024</h2>
+                            <h2 class="text-3xl font-black text-[#012448] tracking-tight ">Participants — Séminaire de Direction 2024</h2>
                         </div>
                         <div class="flex gap-4">
                             <button class="bg-white border-2 border-gray-100 text-[#012448] px-6 py-3 rounded-xl font-bold flex items-center gap-3 hover:bg-gray-50 transition-all shadow-sm">
@@ -117,28 +128,28 @@ export default function seminaire() {
                             <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-users-viewfinder"></i></div>
                             <div>
                                 <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">Total Réservés</p>
-                                <p class="text-2xl font-black text-[#012448]">124 <span class="text-xs text-gray-300">/ 150</span></p>
+                                <p class="text-2xl font-black text-[#012448]">   <span class="text-xs text-gray-300">   </span></p>
                             </div>
                         </div>
                         <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100 flex items-center gap-5">
                             <div class="w-12 h-12 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-circle-check"></i></div>
                             <div>
                                 <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">Confirmés</p>
-                                <p class="text-2xl font-black text-green-600">88</p>
+                                <p class="text-2xl font-black text-green-600"></p>
                             </div>
                         </div>
                         <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100 flex items-center gap-5">
                             <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-clock-rotate-left"></i></div>
                             <div>
                                 <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">En attente</p>
-                                <p class="text-2xl font-black text-orange-600">32</p>
+                                <p class="text-2xl font-black text-orange-600">    </p>
                             </div>
                         </div>
                         <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100 flex items-center gap-5">
                             <div class="w-12 h-12 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-circle-xmark"></i></div>
                             <div>
                                 <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">Annulés</p>
-                                <p class="text-2xl font-black text-red-600">4</p>
+                                <p class="text-2xl font-black text-red-600">   </p>
                             </div>
                         </div>
                     </div>
@@ -177,61 +188,25 @@ export default function seminaire() {
                                 <tr class="hover:bg-gray-50/50 transition-colors group">
                                     <td class="px-10 py-5">
                                         <div class="flex items-center gap-4">
-                                            <img src="https://ui-avatars.com" class="w-10 h-10 rounded-full object-cover shadow-sm">
-                                            <span class="text-sm font-black text-gray-700 group-hover:text-[#012448]">Claire Bonnet</span>
+                                            <img " class="w-10 h-10 rounded-full object-cover shadow-sm">
+                                            <span class="text-sm font-black text-gray-700 group-hover:text-[#012448]"></span>
                                         </div>
                                     </td>
-                                    <td class="text-xs font-bold text-gray-400">Direction Marketing</td>
-                                    <td class="text-xs font-medium text-gray-500">c.bonnet@corporate.com</td>
-                                    <td class="text-center text-gray-400"><i class="fa-solid fa-train text-lg"></i></td>
-                                    <td class="text-center"><span class="text-[10px] font-black text-green-600 uppercase">Oui</span></td>
-                                    <td class="text-xs font-bold text-gray-500">Végétarien</td>
+                                    <td class="text-xs font-bold text-gray-400"></td>
+                                    <td class="text-xs font-medium text-gray-500"></td>
+                                    <td class="text-center text-gray-400"></td>
+                                    <td class="text-center"><span class="text-[10px] font-black text-green-600 uppercase"></span></td>
+                                    <td class="text-xs font-bold text-gray-500"></td>
                                     <td class="text-center">
-                                        <span class="bg-green-100 text-green-700 text-[9px] font-black px-3 py-1 rounded-full uppercase italic">Confirmé</span>
+                                        <span class="bg-green-100 text-green-700 text-[9px] font-black px-3 py-1 rounded-full uppercase "></span>
                                     </td>
                                     <td class="text-center px-10 text-gray-300 hover:text-[#012448] cursor-pointer"><i class="fa-solid fa-ellipsis"></i></td>
-                                </tr>
-                                <!-- Ligne 2 -->
-                                <tr class="hover:bg-gray-50/50 transition-colors group">
-                                    <td class="px-10 py-5">
-                                        <div class="flex items-center gap-4">
-                                            <img src="https://ui-avatars.com" class="w-10 h-10 rounded-full object-cover">
-                                            <span class="text-sm font-black text-gray-700">Marc Leroy</span>
-                                        </div>
-                                    </td>
-                                    <td class="text-xs font-bold text-gray-400">R&D France</td>
-                                    <td class="text-xs font-medium text-gray-500">m.leroy@labo.com</td>
-                                    <td class="text-center text-gray-400"><i class="fa-solid fa-plane text-lg"></i></td>
-                                    <td class="text-center"><span class="text-[10px] font-black text-green-600 uppercase">Oui</span></td>
-                                    <td class="text-xs font-bold text-gray-500">Standard</td>
-                                    <td class="text-center">
-                                        <span class="bg-orange-100 text-orange-600 text-[9px] font-black px-3 py-1 rounded-full uppercase italic">En attente</span>
-                                    </td>
-                                    <td class="text-center px-10 text-gray-300"><i class="fa-solid fa-ellipsis"></i></td>
-                                </tr>
-                                <!-- Ligne 3 -->
-                                <tr class="hover:bg-gray-50/50 transition-colors group">
-                                    <td class="px-10 py-5">
-                                        <div class="flex items-center gap-4">
-                                            <img src="https://ui-avatars.com" class="w-10 h-10 rounded-full object-cover">
-                                            <span class="text-sm font-black text-gray-700">Sophie Valet</span>
-                                        </div>
-                                    </td>
-                                    <td class="text-xs font-bold text-gray-400">Juridique</td>
-                                    <td class="text-xs font-medium text-gray-500">s.valet@corporate.com</td>
-                                    <td class="text-center text-gray-400 opacity-20"><i class="fa-solid fa-bus text-lg"></i></td>
-                                    <td class="text-center"><span class="bg-red-100 text-red-600 px-3 py-1 rounded-lg text-[9px] font-black uppercase">Non</span></td>
-                                    <td class="text-xs font-bold text-gray-500 italic leading-tight">Sans<br>Gluten</td>
-                                    <td class="text-center">
-                                        <span class="bg-green-100 text-green-700 text-[9px] font-black px-3 py-1 rounded-full uppercase italic">Confirmé</span>
-                                    </td>
-                                    <td class="text-center px-10 text-gray-300"><i class="fa-solid fa-ellipsis"></i></td>
                                 </tr>
                             </tbody>
                         </table>
                         <!-- Pagination -->
                         <div class="p-8 flex justify-between items-center bg-gray-50/20 border-t border-gray-50 text-[11px] font-bold text-gray-400">
-                            <div>Affichage de 1 à 5 sur 124 participants</div>
+                            <div></div>
                             <div class="flex gap-2">
                                 <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-100 hover:bg-white"><i class="fa-solid fa-chevron-left"></i></button>
                                 <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-[#012448] text-white">1</button>

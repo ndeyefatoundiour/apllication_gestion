@@ -20,15 +20,6 @@
       "id": "WiDsWm_xLZU"
     },
     {
-      "nom": "Seunabou Mbaye",
-      "email": "seynaboumbay08@gmail.com",
-      "password": "mbaye",
-      "organisateur": "entreprise",
-      "poste": "gerante",
-      "numero": "",
-      "id": "Lkl01B6Kz8Y"
-    },
-    {
       "nom": "TIMERA",
       "email": "timera@gmail.com",
       "password": "timera@@@",
@@ -36,6 +27,24 @@
       "poste": "organisateur",
       "numero": "773751678",
       "id": "YOPEGYNw0BE"
+    },
+    {
+      "nom": "Seynabou Mbaye",
+      "email": "seynabou12@gmail.com",
+      "password": "34567",
+      "organisateur": "entreprise",
+      "poste": "gerante",
+      "numero": "774426686",
+      "id": "OqL2eCdlykM"
+    },
+    {
+      "nom": "Fatou Diop",
+      "email": "diopfatou@gmail.com",
+      "password": "Passer123",
+      "organisateur": "entreprise",
+      "poste": "SecrÉtaire",
+      "numero": "775653345",
+      "id": "PR9n0PGbYbI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

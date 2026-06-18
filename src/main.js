@@ -1,7 +1,4 @@
-import { router } from "./router.js";
+import { initRouter } from './router.js';
 
-router();
-
-window.addEventListener("hashchange", router);
-
-window.addEventListener("load", router);
+// On lance tout. La sécurité est gérée à l'intérieur du router.
+initRouter();

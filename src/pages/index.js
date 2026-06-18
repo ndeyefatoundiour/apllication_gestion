@@ -26,7 +26,7 @@ export function Evenement() {
 
             if (utilisateurTrouve) {
 
-                localStorage.setItem("userConnecter", JSON.stringify(utilisateurTrouve));
+                sessionStorage.setItem("userConnecter", JSON.stringify(utilisateurTrouve));
 
                 location.hash = "#dashboard"; 
 
@@ -106,7 +106,7 @@ export function Evenement() {
 
         btnLogout.onclick = () => {
 
-            localStorage.removeItem("userConnected"); 
+            sessionStorage.removeItem("userConnecter"); 
 
             location.hash = "#connexion";
         };
@@ -145,7 +145,7 @@ export function Evenement() {
     const btnDocs = document.querySelector("#btndocuments");
     if (btnDocs) {
 
-        btnDocs.onclick = () => location.hash = "#document";
+        btnDocs.onclick = () => location.hash = "#documents";
     }
 
     const btnSettings = document.querySelector("#btnsettings");
@@ -164,5 +164,54 @@ export function Evenement() {
     if (btnDash) {
         btnDash.onclick = () => location.hash = "#dashboard";
     }
+
+// pour page seminaire
+
+
+    const btnEnregistre = document.getElementById("btnEnregistre")
+
+    if (btnEnregistre) {
+
+            btnEnregistre.addEventListener("click" , function(){
+            
+                const inputnomSeminaire = document.getElementById("nomSeminaire")
+                const inputThematique = document.getElementById("thematique")
+                const inputDebut = document.getElementById("debut")
+                const inputFin = document.getElementById("fin")
+                const inputDurer = document.getElementById("durer")
+                const inputparticipantsPrevu = document.getElementById("participantsPrevu")
+                const inputCapaciter = document.getElementById("capaciter")
+                const inputLangue = document.getElementById("langue")
+                const inputType1 = document.getElementById("type1")
+                const inputType2 = document.getElementById("type2")
+                const inputType3 = document.getElementById("type3")
+
+
+                const nomSeminaire = inputnomSeminaire.value.trim()
+                const thematique = inputThematique.value.trim()
+                const debut = inputDebut.value.trim()
+                const fin = inputFin.value.trim()
+                const durer = inputDurer.value.trim()
+                const participantsPrevu = inputparticipantsPrevu.value.trim()
+                const capaciter = inputCapaciter.value.trim()
+                const langue = inputLangue.value.trim()
+                const type1 = inputType1.value.trim()
+                const type2 = inputType2.value.trim()
+                const type3 = inputType3.value.trim()
+
+
+
+                
+
+
+
+
+
+        })
+
+    }
+
+
+
 
 }

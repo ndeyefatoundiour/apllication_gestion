@@ -1,68 +1,67 @@
-import inscription from "./pages/inscription.js";
-import connexion from "./pages/connexion.js";
-import dashboard from "./pages/dashboard.js";
-import seminaire from "./pages/seminaire.js";
-import participants from "./pages/participants.js";
-import budget from "./pages/budget.js";
-import planning from "./pages/planning.js";
-import documents from "./pages/documents.js";
-import restaurant from "./pages/restaurant.js";
-import setting from "./pages/setting.js";
-import support from "./pages/support.js";
+import { Evenement } from '../src/pages/index.js';
 
-import { Evenement } from "./pages/index.js";
+const routes = {
+    '/': 'inscription',
+    '/connexion': 'connexion',
+    '/dashboard': 'dashboard',
+    '/seminaire': 'seminaire',
+    '/participants': 'participants',
+    '/budget': 'budget',
+    '/planning': 'planning',
+    '/restaurant': 'restaurant',
+    '/documents': 'documents', 
+    '/setting': 'setting',
+    '/support': 'support'
+};
 
+const render = async (path) => {
 
-export function router(){
+    const app = document.getElementById('app');
+    if (!app) return;
 
-    const route = location.hash;
+    const pageName = routes[path];
     
-    window.scrollTo(0, 0);
+    let pageModule;
 
-    switch(route){
-        case "#connexion":
-            connexion();
-            break;
+    try {
+        if (!pageName) {
+            
+            pageModule = await import('./pages/inscription/inscription.js');
+        } else {
+            
+            pageModule = await import(`./pages/${pageName}/${pageName}.js`);
+        }
 
-        case "#dashboard":
-            dashboard();
-            break;
+        const pageComponent = pageModule.default;
 
-        case "#seminaire":
-            seminaire();
-            break;
-
-        case "#participants":
-            participants();
-            break;
-
-        case "#budget":
-            budget();
-            break;
         
-        case "#planning":
-            planning();
-            break;
 
-        case "#restaurant":
-            restaurant();
-            break;
+        app.innerHTML = pageComponent();
 
-        case "#document":
-            documents();
-            break;
-
-        case "#setting":
-            setting();
-            break;
-
-        case "#support":
-            support();
-            break;
-
-        default:
-            inscription();
+        Evenement();
     }
+    catch (error) {
+        console.error("ERREUR :", error);
+        throw error;
+    }
+};
 
-    Evenement();
-}
+const navigate = (path) => {
+    window.location.hash = path;
+    console.log(hash);
+};
+
+const handleHashChange = async () => {
+    
+    const path = '/' + (window.location.hash.replace('#', '') || '');
+    await render(path);
+   
+};
+
+const initRouter = () => {
+    window.addEventListener('hashchange', handleHashChange);
+    
+    handleHashChange();
+};
+
+export { initRouter, navigate };

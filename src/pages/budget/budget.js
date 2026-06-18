@@ -1,9 +1,17 @@
 export default function budget(){
 
-    document.querySelector("#app").innerHTML = `
+   const user = JSON.parse(sessionStorage.getItem("userConnecter"));
+    
+    const nomComplet = user ? user.nom : "Utilisateur";
+    const role = user ? user.organisateur : "Organisateur";
+    const initiales = nomComplet
+        .split(" ")
+        .map(n => n[0])
+        .join("")
+        .toUpperCase()
+        .substring(0, 2); 
 
-
-<div id="container3" class="w-full h-screen bg-white flex overflow-hidden">
+    return ` <div id="container3" class="w-full h-screen bg-white flex overflow-hidden">
 
                                         <!-- SIDEBAR -->
                                         <div class="w-72 bg-[#012448] flex flex-col">
@@ -65,7 +73,7 @@ export default function budget(){
 
                                             <div id  = "btnsupport" class="h-12 text-gray-200 flex items-center pl-8 hover:bg-[#294469] cursor-pointer">
                                                 <i class="fa-regular fa-circle-question mr-3"></i>
-                                                Support
+                                                Rapport
                                             </div>
 
                                             <div id="logout"
@@ -104,13 +112,13 @@ export default function budget(){
                     <!-- Infos Utilisateur -->
                     <div class="flex items-center gap-4 border-l pl-8 border-gray-200">
                         <div class="flex flex-col text-right">
-                            <span class="font-bold text-[#012448] text-sm leading-none">Ndeye Fatou Ndiour</span>
-                            <span class="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1">Organisateur</span>
+                            <span class="font-bold text-[#012448] text-sm leading-none">${nomComplet}</span>
+                            <span class="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1">${role}}</span>
                         </div>
 
                         <!-- Avatar -->
                         <div class="w-12 h-12 rounded-2xl bg-[#012448] flex items-center justify-center text-white font-bold shadow-lg shadow-blue-900/20 transform hover:rotate-3 transition-transform cursor-pointer">
-                            NF
+                            ${initiales}
                         </div>
                     </div>
                 </div>
